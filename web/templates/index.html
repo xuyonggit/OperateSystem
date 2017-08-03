@@ -1,0 +1,16 @@
+{% include 'Top.html' %}
+<body>
+{% for title,data1 in data.items %}
+<div class="nav-body-box1">
+	<div class="nav-body-index">
+	{{ title }}
+	</div>
+	  {% for dic in data1 %}
+		{% for key,value in dic.items %}
+			<a href="{{ value }}" target="_blank" class="btn btn-primary btn-lg active">{{ key }}</a>
+	    {% endfor %}
+	  {% endfor %}
+</div>
+{% endfor %}
+</body>
+</html>

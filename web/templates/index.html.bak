@@ -1,0 +1,20 @@
+{% include 'Top.html' %}
+<body>
+<div class="nav-body-box1">
+	<div class="nav-body-index">
+	运维系统
+	</div>
+		{% for dic in data %}
+		{% for key,value in dic.items %}
+		<a href={{ value }} target="_blank" class="btn btn-primary btn-lg active">{{ key }}</a>
+		{% endfor %}
+		{% endfor %}
+</div>
+<div class="nav-body-box1">
+	<div class="nav-body-index">
+	资料管理
+	</div>
+	{{ data }}
+</div>
+</body>
+</html>
