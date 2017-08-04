@@ -6,11 +6,11 @@ from bootstrap_toolkit.widgets import BootstrapDateInput, BootstrapTextInput, Bo
 class LoginForm(forms.Form):
     username = forms.CharField(
         required=True,
-        label="用户名",
+        label="账户",
         error_messages={'required': 'Please input user name!'},
         widget=forms.TextInput(
             attrs={
-                'placeholder': '用户名',
+                'placeholder': 'username',
             },
         ),
     )
@@ -20,7 +20,7 @@ class LoginForm(forms.Form):
         error_messages={'required': 'Please input user passwd!'},
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': '密码',
+                'placeholder': 'password',
             },
         ),
     )

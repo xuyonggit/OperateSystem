@@ -131,3 +131,8 @@ a.notify:active {
   background: #99CC99;
   margin:2px;
 }
+
+.loginContent{ text-align:center;margin-top:25px}
+.loginForm{width:395px; height:197px;float:right; display:inline; margin:20px 40px 0 0;}
+#fm-login-submit{margin-top:0}
+.fm-button{background:#00C1DE;border-color:#00C1DE;height:40px;line-height:40px;box-sizing:border-box;font-size:14px;border-radius:0}

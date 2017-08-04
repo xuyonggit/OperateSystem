@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render,render_to_response,get_object_or_404
-from django.http import HttpResponse,HttpResponseRedirect
-from django.template.context import RequestContext
-import sys
+from django.shortcuts import render, render_to_response
+from django.http import HttpResponseRedirect
 from .models import yunwei, listt, yunwei_user
 from .forms import LoginForm
-
+from django.views.decorators.csrf import csrf_exempt
+import sys
 # Create your views here.
 
 
 # login
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
         lf = LoginForm(request.POST)
@@ -29,7 +29,7 @@ def login(request):
         lf = LoginForm()
     return render_to_response('login.html', {'lf': lf})
 
-
+@csrf_exempt
 def index(request):
     List = []
     data = {}
