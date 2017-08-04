@@ -1,11 +1,34 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response,get_object_or_404
+from django.http import HttpResponse,HttpResponseRedirect
+from django.template.context import RequestContext
 import sys
-from .models import yunwei, listt
+from .models import yunwei, listt, yunwei_user
+from .forms import LoginForm
 
 # Create your views here.
+# login
+def login(request):
+	if request.method == 'POST':
+		loginform = LoginForm(request.POST)
+		if loginform.is_valid():
+			username = loginform.cleaned_data['username']
+			password = loginform.cleaned_data['password']
+			user = yunwei_user.objects.filter(username__exact = username,password__exact = password)
+			if user:
+				response = HttpResponseRedirect('/web/index/')
+				#将username写入浏览器cookie,失效时间为3600
+				response.set_cookie('username', uaername, 3600)
+				return response
+			else:
+				return HttpResponseRedirect('/web/login/')
+	else:
+		loginform = LoginForm()
+		print(loginform)
+	return render_to_response('login.html',{'loginform': loginform})
+
+
 def index(request):
 	List = []
 	data = {}
