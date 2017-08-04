@@ -26,7 +26,7 @@ SECRET_KEY = '&zbt5bx-(fs_94*sy%zciw7o8j-c=f$zq5%qsghm@d%ga94y^k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'123.59.67.196']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
 		'NAME': 'web_yunwei',
 		'USER': 'django',
 		'PASSWORD': 'django',
-		'HOST': '127.0.0.1',
+		'HOST': '47.94.93.174',
 		'PORT': '3306',
 	}
 }
