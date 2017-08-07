@@ -43,5 +43,8 @@ def index(request):
             data[title].append({name: link[0][0]})
         else:
             data[title] = [{name: link[0][0]}]
-    return render(request, 'index.html', {'data': data})
-
+    if request.COOKIES:
+        cook = request.COOKIES['username']
+        return render(request, 'index.html', {'data': data, 'user': cook})
+    else:
+        return HttpResponseRedirect('/web/login/')
