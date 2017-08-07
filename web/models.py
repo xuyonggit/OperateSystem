@@ -26,9 +26,10 @@ class yunwei(models.Model):
         return self.name
 
 class yunwei_user(models.Model):
-	username = models.CharField(max_length=50)
-	password = models.CharField(max_length=50)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    name = models.CharField(u'姓名', max_length=50)
 
-	def __str__(self):
-		return self.username
+    def __str__(self):
+        return self.username
 
