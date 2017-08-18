@@ -87,7 +87,7 @@ DATABASES = {
 		'NAME': 'web_yunwei',
 		'USER': 'django',
 		'PASSWORD': 'django',
-		'HOST': '127.0.0.1',
+		'HOST': '47.94.93.174',
 		'PORT': '3306',
 	}
 }
