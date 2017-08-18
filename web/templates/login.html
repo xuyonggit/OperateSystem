@@ -1,16 +1,35 @@
-{% include 'Top.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运维管理系统</title>
+
+<!-- myself css style-->
+    <link href="{% static "css/mystyle.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <body>
-<div class="loginContent">
-    <h1>登陆页面</h1>
-    <form method = 'post' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{lf.as_p}}
-        <input id="fm-login-submit" class="fm-button" type="submit" value = "登录" />
-    </form>
-    <br>
+<div class="container">
+    <div class="box">
+        <h2>登录系统</h2>
+        <form method = 'post' enctype="multipart/form-data">
+            {% csrf_token %}
+            {{lf.as_p}}
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="checkme"> 记住我
+                </label>
+                <a class="float-right" href="www.baidu.com">忘记密码？</a>
+                </div>
+            <input id="fm-login-submit" class="fm-button-login btn-lg" type="submit" value="登录" />
+        </form>
+        <br>
+    </div>
 </div>
 </body>
 </html>

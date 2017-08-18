@@ -45,6 +45,7 @@ def index(request):
             data[title] = [{name: link[0][0]}]
     if request.COOKIES:
         cook = request.COOKIES['username']
-        return render(request, 'index.html', {'data': data, 'user': cook})
+        user_name = yunwei_user.objects.values_list('name').filter(username__contains=cook)[0][0]
+        return render(request, 'index.html', {'data': data, 'user': user_name})
     else:
         return HttpResponseRedirect('/web/login/')
