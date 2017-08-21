@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>金桐版本管理</title>
+    <!-- myself css style-->
+    <link href="{% static "css/mystyle.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <script src={% static 'js/jquery-2.1.4.min.js' %}></script>
+    <script>
+        $(function(){
+            $('#get_data').submit(function(){
+                var i_version = $("#datas_version").val();                 //获得form中用户输入data
+                var i_type = $("#datas_type").val();
+            $.ajax({
+                type:"POST",
+                data: {i_version: i_version, i_type: i_type},
+                url: "/web/version/?action=get_vm", //后台处理函数的url 这里用的是static url 需要与urls.py中的name一致,或者直接写http地址
+                cache: false,
+                dataType: "json",
+                    success: function(ret){
+                        $('#output').html(ret)
+                    },
+                    error: function(){
+                        $('#output').html('error')
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="nav-body-box1">
+<form class="form-inline" id="get_data">
+  <div class="form-group">
+    <label for="exampleInputName2">Version</label>
+    <input id="datas_version" type="text" class="form-control" name="Version" placeholder="328">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputName2">Type</label>
+    <input id="datas_type" type="text" class="form-control" name="Type" placeholder="2">
+  </div>
+  <button type="submit" class="btn btn-default">Search</button>
+  <pre id="output" style="width:95%;margin-top:10px;height:100%;background-color:#fefcff; border:#d1d0ce 1px solid;" ></pre>
+</form>
+</div>
+</body>
+</html>

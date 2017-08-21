@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import yunwei, listt, yunwei_user
 from .forms import LoginForm
 from django.views.decorators.csrf import csrf_exempt
 import sys
 # Create your views here.
-
+from .conn_mongo import mongo_query
 
 # login
 @csrf_exempt
@@ -49,3 +49,24 @@ def index(request):
         return render(request, 'index.html', {'data': data, 'user': user_name})
     else:
         return HttpResponseRedirect('/web/login/')
+
+
+@csrf_exempt
+def version(request):
+    if request.method == 'POST':
+        if request.GET['action'] == "get_vm":
+            if request.POST['i_version'] == "":
+                i_version = 328
+            else:
+                i_version = request.POST['i_version']
+            if request.POST['i_type'] == "":
+                i_type = 2
+            else:
+                i_type = request.POST['i_type']
+        dic1 = {'i_version': i_version, 'i_type': i_type}
+        query_data = mongo_query(List=dic1)
+        print(query_data)
+
+        return HttpResponse(query_data)
+    else:
+        return render(request, 'version.html')
