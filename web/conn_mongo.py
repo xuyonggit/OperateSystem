@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pymongo
+from bson.objectid import ObjectId
 
 
 def Conn():
@@ -7,9 +8,7 @@ def Conn():
 
 
 def mongo_query(List):
-    version = List['i_version']
-    type = List['i_type']
     C = Conn()
-    db = C.ywxt
-    out_data = []
-    return db.Version.find_one()
+    db = C.ywxt.Version
+    dic = {"version": int(List['i_version']), "type": int(List['i_type'])}
+    return db.find_one(dic)

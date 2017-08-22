@@ -15,24 +15,31 @@
                 var i_type = $("#datas_type").val();
             $.ajax({
                 type:"POST",
-                data: {i_version: i_version, i_type: i_type},
+                data: {"i_version": i_version, "i_type": i_type},
                 url: "/web/version/?action=get_vm", //后台处理函数的url 这里用的是static url 需要与urls.py中的name一致,或者直接写http地址
                 cache: false,
                 dataType: "json",
                     success: function(ret){
-                        $('#output').html(ret)
+                    console.log(ret)
+                        $('#output_info').html(ret.verCode)
+                        $('#output_version').html(ret.version);
+                        $('#output_content').html(ret.content);
+                        $('#output_url').html(ret.updateUrl)
                     },
-                    error: function(){
-                        $('#output').html('error')
+                    error: function(msg){
+                        alert(msg)
                     }
                 });
-                return false;
+            return false
             });
         });
     </script>
 </head>
 <body>
-<div class="nav-body-box1">
+<div class="nav-image">
+    <p class="float-right-welcome">{{ user }}</p>
+</div>
+<div class="nav-body-box1" style="margin: 2% 10% 30px 10%;">
 <form class="form-inline" id="get_data">
   <div class="form-group">
     <label for="exampleInputName2">Version</label>
@@ -43,7 +50,22 @@
     <input id="datas_type" type="text" class="form-control" name="Type" placeholder="2">
   </div>
   <button type="submit" class="btn btn-default">Search</button>
-  <pre id="output" style="width:95%;margin-top:10px;height:100%;background-color:#fefcff; border:#d1d0ce 1px solid;" ></pre>
+    <p class="bg-primary" style="width:95%;border-radius:4px">
+        VerCode
+    </p>
+    <pre id="output_info" style="width:95%;margin-top:10px;height:100%;background-color:#fefcff; border:#d1d0ce 1px solid;" ></pre>
+    <p class="bg-primary" style="width:95%;border-radius:4px">
+        Version
+    </p>
+    <pre id="output_version" style="width:95%;margin-top:10px;height:100%;background-color:#fefcff; border:#d1d0ce 1px solid;" ></pre>
+    <p class="bg-primary" style="width:95%;border-radius:4px">
+        updateUrl
+    </p>
+    <pre id="output_url" style="width:95%;margin-top:10px;height:100%;background-color:#fefcff; border:#d1d0ce 1px solid;" ></pre>
+    <p class="bg-primary" style="width:95%;border-radius:4px">
+        Content
+    </p>
+    <pre id="output_content" style="width:95%;margin-top:10px;height:100%;background-color:#fefcff; border:#d1d0ce 1px solid;" ></pre>
 </form>
 </div>
 </body>
