@@ -21,10 +21,10 @@
                 dataType: "json",
                     success: function(ret){
                     console.log(ret)
-                        $('#output_info').html(ret.verCode)
+                        $('#output_info').html(ret.verCode);
                         $('#output_version').html(ret.version);
                         $('#output_content').html(ret.content);
-                        $('#output_url').html(ret.updateUrl)
+                        $('#output_url').html(ret.updateUrl);
                     },
                     error: function(msg){
                         alert("无返回数据")
