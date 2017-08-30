@@ -16,17 +16,11 @@
 <body>
 <div class="container">
     <div class="box">
-        <h2>登录系统</h2>
+        <h2>Password Reset</h2>
         <form method = 'post' enctype="multipart/form-data">
             {% csrf_token %}
             {{lf.as_p}}
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="checkme"> 记住我
-                </label>
-                <a class="float-right" href="/web/lostpasswd">忘记密码？</a>
-                </div>
-            <input id="fm-login-submit" class="fm-button-login btn-lg" type="submit" value="登录" />
+            <input id="fm-login-submit" class="fm-button-login btn-lg" type="submit" value="Commit" />
         </form>
         <br>
     </div>

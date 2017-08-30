@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import yunwei, listt, yunwei_user
-from .forms import LoginForm
+from .forms import LoginForm, resetpasswd
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 import sys
 # Create your views here.
 from .conn_mongo import mongo_query
@@ -44,7 +45,7 @@ def index(request):
             data[title].append({name: link[0][0]})
         else:
             data[title] = [{name: link[0][0]}]
-    if request.COOKIES:
+    if 'username' in request.COOKIES:
         cook = request.COOKIES['username']
         user_name = yunwei_user.objects.values_list('name').filter(username__contains=cook)[0][0]
         return render(request, 'index.html', {'data': data, 'user': user_name})
@@ -53,6 +54,7 @@ def index(request):
 
 
 @csrf_exempt
+@login_required
 def version(request):
     if request.method == 'POST':
         if request.GET['action'] == "get_vm":
@@ -71,3 +73,10 @@ def version(request):
         return HttpResponse(json.dumps(query_data))
     else:
         return render(request, 'version.html')
+
+
+@csrf_exempt
+def lostpasswd(request):
+    if request.method == 'GET':
+        lf = resetpasswd()
+        return render(request, 'resetpasswd.html', {'lf': lf})
