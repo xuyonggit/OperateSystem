@@ -10,5 +10,8 @@ def Conn():
 def mongo_query(List):
     C = Conn()
     db = C.ywxt.Version
-    dic = {"version": int(List['i_version']), "type": int(List['i_type'])}
+    if List['i_type'] == "":
+        dic = {"version": int(List['i_version'])}
+    else:
+        dic = {"version": int(List['i_version']), "type": int(List['i_type'])}
     return db.find_one(dic)

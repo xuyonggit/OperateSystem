@@ -54,7 +54,6 @@ def index(request):
 
 
 @csrf_exempt
-@login_required
 def version(request):
     if request.method == 'POST':
         if request.GET['action'] == "get_vm":
@@ -63,13 +62,12 @@ def version(request):
             else:
                 i_version = request.POST['i_version']
             if request.POST['i_type'] == "":
-                i_type = 2
+                i_type = ""
             else:
                 i_type = request.POST['i_type']
         dic1 = {'i_version': i_version, 'i_type': i_type}
         query_data = mongo_query(List=dic1)
         del query_data["_id"]
-        print(query_data)
         return HttpResponse(json.dumps(query_data))
     else:
         return render(request, 'version.html')
