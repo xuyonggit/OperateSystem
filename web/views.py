@@ -11,6 +11,7 @@ import sys
 from .conn_mongo import mongo_query
 import json
 
+
 # login
 @csrf_exempt
 def login(request):
@@ -30,6 +31,7 @@ def login(request):
     else:
         lf = LoginForm()
     return render_to_response('login.html', {'lf': lf})
+
 
 @csrf_exempt
 def index(request):
