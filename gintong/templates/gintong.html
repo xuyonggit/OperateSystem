@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gintong</title>
+    <!-- myself css style-->
+    <link href="{% static "css/mystyle.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+</head>
+</head>
+<body>
+    {% for keys,values in data.items %}
+        <p>用户编号 :{{ keys }}</p>
+        {% for i,j in values.items %}
+            <p>日期: {{ i }}
+            {{ j }}
+            上班时间：{{ j | first }}
+            下班时间：{{ j | last }}
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

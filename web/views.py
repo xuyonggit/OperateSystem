@@ -33,6 +33,7 @@ def login(request):
     return render_to_response('login.html', {'lf': lf})
 
 
+# 主页
 @csrf_exempt
 def index(request):
     List = []
@@ -55,6 +56,7 @@ def index(request):
         return HttpResponseRedirect('/web/login/')
 
 
+# 版本查询
 @csrf_exempt
 def version(request):
     if request.method == 'POST':
@@ -75,6 +77,7 @@ def version(request):
         return render(request, 'version.html')
 
 
+# 密码重置
 @csrf_exempt
 def lostpasswd(request):
     if request.method == 'GET':
