@@ -10,6 +10,7 @@ class listt(models.Model):
         verbose_name_plural = u'模块管理'
 
     name = models.CharField(u'类别', max_length=20)
+    sortId = models.IntegerField(u'序列ID', default=0)
 
     def __str__(self):
         return self.name	

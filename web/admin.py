@@ -2,21 +2,17 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-
-from . import models
+from .models import listt, yunwei
 # class your models here.
 
+
 class yunweiAdmin(admin.ModelAdmin):
-	list_display = ('name', 'link')		# list
-	search_fields = ('name',)
+    list_display = ('name', 'link')
+    search_fields = ('name',)
 
 
-
-
-
-
-
-
+class listtAdmin(admin.ModelAdmin):
+    list_display = ('name', 'sortId')
 
 
 
@@ -26,5 +22,5 @@ class yunweiAdmin(admin.ModelAdmin):
 
 # Register your models here.
 
-admin.site.register(models.yunwei, yunweiAdmin)
-admin.site.register(models.listt)
+admin.site.register(yunwei, yunweiAdmin)
+admin.site.register(listt, listtAdmin)

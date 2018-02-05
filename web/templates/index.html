@@ -19,17 +19,20 @@
     <a href="/admin" target="_blank"><button type="button" class="btn btn-danger">管理后台</button>	</a>
     <a href="/web/version" target="_blank"><button type="button" class="btn btn-danger">金桐版本管理</button></a>
 </div>
-{% for title,data1 in data.items %}
-<div class="nav-body-box1">
-	<div class="nav-body-index">
-	{{ title }}
-	</div>
-	  {% for dic in data1 %}
-		{% for key,value in dic.items %}
-			<a href="{{ value }}" target="_blank" class="btn btn-primary btn-lg active">{{ key }}</a>
-	    {% endfor %}
-	  {% endfor %}
-</div>
-{% endfor %}
+{% for title in templates %}
+        <div class="nav-body-box1">
+	    <div class="nav-body-index">
+            {{ title }}
+        </div>
+	      {% for key, values in data.items %}
+              {# 获取该模块下的所以项目 #}
+              {% if key == title %}
+                  {% for dic in values %}
+                      <a href="{{ dic.link }}" target="_blank" class="btn btn-primary btn-lg active">{{ dic.name }}</a>
+                  {% endfor %}
+              {% endif %}
+	      {% endfor %}
+    </div>
+    {% endfor %}
 </body>
 </html>

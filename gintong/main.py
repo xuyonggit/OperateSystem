@@ -27,4 +27,4 @@ class Main():
 
 
 if __name__ == '__main__':
-    print(Main().get_list([69]))
+    print(Main().get_list([69, 36]))

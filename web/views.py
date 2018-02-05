@@ -27,7 +27,7 @@ def login(request):
                 response.set_cookie('username', username, 3600)
                 return response
             else:
-                return HttpResponseRedirect('/web/login/')
+                return HttpResponse('密码错误，请重新输入')
     else:
         lf = LoginForm()
     return render_to_response('login.html', {'lf': lf})
@@ -38,20 +38,17 @@ def login(request):
 def index(request):
     List = []
     data = {}
-    data_name = yunwei.objects.all()
-    for name in data_name:
-        link = yunwei.objects.values_list('link').filter(name__contains=name)
-        title_id = yunwei.objects.values_list('title_id').filter(name__contains=name)
-        title_list = listt.objects.values_list('name').filter(id__contains=title_id[0][0])
-        title = title_list[0][0]
-        if title in data.keys():
-            data[title].append({name: link[0][0]})
-        else:
-            data[title] = [{name: link[0][0]}]
+    templates = []
+    title_list = listt.objects.order_by('sortId')
+    for title in title_list:
+        templates.append(title)
+        title_id = listt.objects.values('id').filter(name=title)
+        res = yunwei.objects.values('name', 'link').filter(title_id=title_id)
+        data[title] = res
     if 'username' in request.COOKIES:
         cook = request.COOKIES['username']
         user_name = yunwei_user.objects.values_list('name').filter(username__contains=cook)[0][0]
-        return render(request, 'index.html', {'data': data, 'user': user_name})
+        return render(request, 'index.html', {'templates': templates, 'data': data, 'user': user_name})
     else:
         return HttpResponseRedirect('/web/login/')
 
