@@ -28,11 +28,11 @@ class LoginForm(forms.Form):
             },
         ),
     )
-    def clean(self):
-        if not self.is_valid():
-            raise forms.ValidationError(u'用户名为必填项')
-        else:
-            cleaned_data = super(LoginForm, self).clean()
+    # def clean(self):
+    #     if not self.is_valid():
+    #         raise forms.ValidationError(u'用户名为必填项')
+    #     else:
+    #         cleaned_data = super(LoginForm, self).clean()
 
 class resetpasswd(forms.Form):
     username = forms.CharField(
